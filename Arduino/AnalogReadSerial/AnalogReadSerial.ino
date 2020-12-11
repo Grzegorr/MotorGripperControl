@@ -10,6 +10,8 @@
   http://www.arduino.cc/en/Tutorial/AnalogReadSerial
 */
 
+const int PressureSensor = 62;
+
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -18,9 +20,13 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-  // read the input on analog pin 0:
-  int sensorValue = analogRead(A0);
-  // print out the value you read:
-  Serial.println(sensorValue);
+  // read the input on analog pin 0: 
+  int value = 0; 
+  int x = 0;
+  for(x = 0; x <1; x++){
+  int sensorValue = analogRead(PressureSensor);
+  value = value + sensorValue;
+  }
+  Serial.println(value);
   delay(1);        // delay in between reads for stability
 }
