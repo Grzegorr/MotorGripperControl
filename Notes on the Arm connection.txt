@@ -1,0 +1,10 @@
+IP setup:
+
+There is 4 places wher IP goes in:
+1.kg_client (the progeam on the pendant)
+2."network" console on the pendant
+3.kg_robot in the code
+4. controller code
+
+There are 2 IPs which are used. First is computer ethernet IP - open cmand and do ipconfing, carefull to use ethernet not wifi IP. 
+This addres goes into kg_robot(3) and into kg_client(1). The rest two need to be filled with an IP which has last bit changed.

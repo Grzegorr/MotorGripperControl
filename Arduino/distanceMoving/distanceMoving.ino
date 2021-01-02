@@ -1,8 +1,8 @@
 // To use it, open serial monitor and type a distance in, inputs can be "2","10", "-33" etc. 
 
 
-const int encoder0PinA = 20; //Channel A of the encoder 
-const int encoder0PinB = 21; //Channel B of the encoder
+const int encoder0PinA = 18; //Channel A of the encoder 
+const int encoder0PinB = 19; //Channel B of the encoder
 const int PWM_A =11;  //PWM for signal control
 const int DIR_1 = 8;  //Direction Control, they should be (1,0) or (0,1) for movement 
 const int DIR_2 = 13;  //Direction control 

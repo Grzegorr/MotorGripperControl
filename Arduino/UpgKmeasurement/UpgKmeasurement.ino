@@ -2,8 +2,8 @@
 
 
 //Used Pins
-const int encoder0PinA = 20; //Channel A of the encoder 
-const int encoder0PinB = 21; //Channel B of the encoder
+const int encoder0PinA = 18; //Channel A of the encoder 
+const int encoder0PinB = 19; //Channel B of the encoder
 const int PWM_A = 11;  //PWM for signal control
 const int DIR_1 = 8;  //Direction Control 
 const int DIR_2 = 13;  //Direction control 
@@ -17,7 +17,7 @@ int Debounce_time = 0; // Time between trips of encoder are allowed in microseco
 int A_count = 0; //Position with Respect to srart
 int saved_A = 6666;
 
-int motor_pwm = 100; // How much power to move, 0-255 range
+int motor_pwm = 180; // How much power to move, 0-255 range
 
 //int distances[] = {50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 50, -50, 50 -50, 100, -100, 200, -200, 300, -300, 700, -700, 1500, -1500};
 int distances[] = {30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30, 30, -30,-6731,-6732};
@@ -33,7 +33,7 @@ int initial_squeeze_enc = 0;
 int SA_initial_sensor = 0;
 int SA_initial_A_count = 0;
 
-int SA_sensor_threshold_delta = 3;//force to stop presqueeze
+int SA_sensor_threshold_delta = 5;//force to stop presqueeze
 int SA_sensor_measurement_delta = 8;// max force squeeze
 int SA_max_squeeze_distance = 500;
 
@@ -51,8 +51,6 @@ void setup() {
   pinMode(PWM_A, OUTPUT);
   pinMode(DIR_1, OUTPUT);
   pinMode(DIR_2, OUTPUT);
- 
-  // initialize serial communication at 9600 bits per second:
   Serial.begin(115200);
   Serial.println("Let's Go");
   }
@@ -150,14 +148,14 @@ void squeeze_action(){
   do{
     Serial.println("Needed for some reason");
     //Serial.println("G:" + String(goal) + ", Current: " + String(A_count));
-    if(abs(goal - A_count) < 40){
+    if(abs(goal - A_count) < 60){
       analogWrite(PWM_A, 0.8*motor_pwm);
     }
     if(abs(goal - A_count) < 40){
-      analogWrite(PWM_A, 0.7*motor_pwm);
+      analogWrite(PWM_A, 0.5*motor_pwm);
     }
-    if(abs(goal - A_count) < 40){
-      analogWrite(PWM_A, 0.6*motor_pwm);
+    if(abs(goal - A_count) < 20){
+      analogWrite(PWM_A, 0.3*motor_pwm);
     }
   }while(A_count != goal);
   analogWrite(PWM_A, 0);
